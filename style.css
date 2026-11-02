@@ -1,0 +1,187 @@
+/* O que é nosso — one letter, two languages. No tracking, no scripts. */
+
+:root {
+  --paper: #FBF5F3;
+  --ink: #1F1A1C;
+  --rose: #C2185B;
+  --muted: #8A7A80;
+  --rule: #EAD9DE;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1A1416;
+    --ink: #EDE4E7;
+    --rose: #F06292;
+    --muted: #A89AA0;
+    --rule: #3A2E33;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1A1416;
+  --ink: #EDE4E7;
+  --rose: #F06292;
+  --muted: #A89AA0;
+  --rule: #3A2E33;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Literata", Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 40em) {
+  body { font-size: 1.1875rem; }
+}
+
+.page {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 5rem;
+}
+
+/* language switch: globe, colon, current language; the other appears on hover/focus */
+.lang {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+.lang-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+.lang svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.lang .current { color: var(--ink); }
+.lang a {
+  color: var(--rose);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 160ms ease, max-width 200ms ease;
+}
+.lang a::before { content: "·"; color: var(--muted); margin-right: 0.35em; }
+.lang-inner:hover a,
+.lang-inner:focus-within a,
+.lang a:focus-visible {
+  opacity: 1;
+  max-width: 6em;
+}
+.lang a:hover,
+.lang a:focus-visible { border-bottom-color: var(--rose); outline: none; }
+@media (hover: none) {
+  .lang a { opacity: 1; max-width: 6em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lang a { transition: none; }
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+}
+@media (min-width: 40em) {
+  header h1 { font-size: 2.5rem; }
+}
+header .rule {
+  width: 3rem;
+  height: 2px;
+  background: var(--rose);
+  border: 0;
+  margin: 0 0 0.9rem;
+}
+header .byline {
+  margin: 0 0 3rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  font-style: italic;
+}
+
+.letter p {
+  margin: 0 0 1.35em;
+  hyphens: auto;
+}
+.letter p:last-child { margin-bottom: 0; }
+
+.letter ol {
+  padding-left: 1.3em;
+  margin: 0 0 1.35em;
+}
+.letter ol > li { margin-bottom: 1.1em; padding-left: 0.25em; }
+.letter ol > li::marker { color: var(--rose); font-weight: 500; }
+.letter ol strong { font-weight: 600; }
+.letter ul { padding-left: 1.2em; margin: 0.6em 0 0; }
+.letter ul li { margin-bottom: 0.7em; }
+.letter ul ul { margin-top: 0.6em; }
+.letter ul li::marker { color: var(--muted); }
+
+.letter em { font-style: italic; }
+
+.letter .bora {
+  color: var(--rose);
+  font-weight: 500;
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+footer p { margin: 0 0 0.5em; }
+footer a {
+  color: var(--rose);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+footer a:hover, footer a:focus-visible { border-bottom-color: var(--rose); outline: none; }
+
+::selection { background: var(--rose); color: var(--paper); }
+
+/* section links in the footer + stub pages */
+.sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.4em;
+  margin-bottom: 1rem;
+}
+.sections a, .sections span[aria-current] {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.sections a:hover, .sections a:focus-visible { border-bottom-color: var(--rose); outline: none; }
+.sections span[aria-current] { color: var(--muted); border-bottom-color: transparent; }
+footer .note { color: var(--muted); font-style: italic; margin-bottom: 1.25rem; }
+header .kicker { margin: 0 0 1.5rem; font-size: 0.875rem; }
+header .kicker a { color: var(--muted); text-decoration: none; }
+header .kicker a:hover, header .kicker a:focus-visible { color: var(--rose); outline: none; }
