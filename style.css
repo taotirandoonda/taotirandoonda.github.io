@@ -127,7 +127,6 @@ header .byline {
 
 .letter p {
   margin: 0 0 1.35em;
-  hyphens: auto;
 }
 .letter p:last-child { margin-bottom: 0; }
 
@@ -145,7 +144,7 @@ header .byline {
 
 .letter em { font-style: italic; }
 
-.letter .bora {
+.letter .highlight {
   color: var(--rose);
   font-weight: 500;
 }
